@@ -5,6 +5,8 @@
 #include <string>
 #include <list>
 #include <cstdio>
+#include "OA3_1.hpp"
+#include "OA3_4.hpp"
 
 using namespace std;
 
@@ -112,25 +114,159 @@ void read_separator(fstream &file)
 	}
 }
 
-int main(int argc, char** argv)
+void menu_2(fstream &file)
 {
+	int choice;
+	bool menu = true;
+	while (menu != false){
+		system("clear");
+		cout << "******* ITEM 2 **************\n";
+		cout << " 1 - Registrar uma pessoa\n";
+		cout << " 2 - Procurar registro\n";
+		cout << " 3 - Exit.\n";
+		cout << " Digite uma opção: ";
+
+		cin >> choice;
+		cin.clear();
+		cin.ignore(256, '\n');
+
+		switch (choice)
+		{
+			case 1:
+			burn_sizeInFront(file);
+			break;
+
+			case 2:
+			read_sizeInFront(file);		
+			break;
+			
+			case 3:
+			menu = false;
+			break;
+
+			default:
+			cout << "Escolha não válida \n";
+			cout << "Escolha novamente\n";
+			cin >> choice;
+			cin.clear();
+			cin.ignore(256, '\n');
+			break;
+		}
+	}
+}
+
+void menu_3(fstream &file)
+{
+	int choice;
+	bool menu = true;
+	while (menu != false){
+		system("clear");
+		cout << "******** ITEM 3 ***************\n";
+		cout << " 1 - Registrar uma pessoa\n";
+		cout << " 2 - Procurar registro\n";
+		cout << " 3 - Exit.\n";
+		cout << " Digite uma opção: ";
+
+		cin >> choice;
+		cin.clear();
+		cin.ignore(256, '\n');
+
+		switch (choice)
+		{
+			case 1:
+			burn_separator(file);
+			break;
+
+			case 2:
+			read_separator(file);		
+			break;
+			
+			case 3:
+			menu = false;
+			break;
+
+			default:
+			cout << "Escolha não válida \n";
+			cout << "Escolha novamente\n";
+			cin >> choice;
+			cin.clear();
+			cin.ignore(256, '\n');
+			break;
+		}
+	}
+}
+
+void main_menu()
+{
+	int choice;
+	bool menu = true;
 	fstream f_one("dataFront.txt", fstream::in | fstream::out | fstream::trunc);
 	if(! f_one.is_open())
 		throw "FILE_ONE NOT OPEN";
-	burn_sizeInFront(f_one);
-	f_one.clear();
-	f_one.seekg(0, ios::beg);
-	read_sizeInFront(f_one);
-	f_one.close();
-	
 	fstream f_two("dataSep.txt", fstream::in | fstream::out | fstream::trunc);
 	if(!f_two.is_open())
 		throw "FILE_TWO NOT OPEN";
-	burn_separator(f_two);
-	f_two.clear();
-	f_two.seekg(0, ios::beg);
-	read_separator(f_two);
-	f_two.close();
+	
+	cout << "\t\tLE3OA - Otto & Gabriel" << endl;
+	cout << "\tOtto K. von Sperling\n\tMAT: 12/0131510" << endl;
+	cout << "\tGabriel\n\tMAT: XXXXXXXX" << endl;
+	
+	while (menu != false){
+		cout << "*******************************\n";
+		cout << " Item 1 - STATIC SIZE OF DATA STREAM\n";
+		cout << " Item 2 - SIZE TOKEN OF DATA STREAM\n";
+		cout << " Item 3 - SEPARATOR FOR DATA STREAM\n";
+		cout << " Item 4 - ATTRIBUTE FIELD FOR DATA STREAM\n";
+		cout << " 5 - Exit.\n";
+		cout << " Digite uma opção: ";
 
+		cin >> choice;
+		cin.clear();
+		cin.ignore(256, '\n');
+
+		switch (choice)
+		{
+			case 1:
+			menu_1();
+			system("clear");
+			break;
+
+			case 2:
+			f_one.clear();
+			f_one.seekg(0, ios::beg);
+			menu_2(f_one);
+			f_one.close();
+			break;
+			
+			case 3:
+			f_two.clear();
+			f_two.seekg(0, ios::beg);
+			menu_3(f_two);
+			f_two.close();
+			break;
+
+			case 4:
+			menu_4();
+			break;
+
+			case 5:
+			menu = false;
+			break;
+
+			default:
+			cout << "Escolha não válida \n";
+			cout << "Escolha novamente\n";
+			cin >> choice;
+			cin.clear();
+			cin.ignore(256, '\n');
+			system("clear");
+			break;
+		}
+	}
+}
+
+int main(int argc, char** argv)
+{
+	main_menu();
 	return 0;
 }

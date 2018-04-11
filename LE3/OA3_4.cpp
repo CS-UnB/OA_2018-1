@@ -1,11 +1,4 @@
-#include <iostream>
-#include <sstream>
-#include <string>
-#include <fstream>  
-#include <locale>
-#include <cstdlib>
-#include <vector>
-#include <unistd.h>
+#include "OA3_4.hpp"
 
 using namespace std;
 
@@ -128,7 +121,7 @@ void procurar()
 }
 
 
-void menu()
+void menu_4()
 {
 	int choice;
 	bool menu = true;
@@ -167,12 +160,4 @@ void menu()
 			break;
 		}
 	}
-}
-
-int main(int argc, char const *argv[])
-{
-	locale::global(std::locale("en_US.utf8"));
-	wcout.imbue(std::locale());
-	menu();
-	return 0;
 }

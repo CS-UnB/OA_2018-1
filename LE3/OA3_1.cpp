@@ -1,17 +1,10 @@
-#include <iostream>
-#include <sstream>
-#include <string>
-#include <fstream>  
-#include <locale>
-#include <cstdlib>
-#include <vector>
-#include <unistd.h>
+#include "OA3_1.hpp"
 
 #define TAM 60
 
 using namespace std;
 
-ofstream registro;
+ofstream registro_1;
 
 string getIt()
 {
@@ -32,28 +25,28 @@ void tamanhoFixo()
 {
 	string nome, sobrenome, endereco, cep, telefone;
 
-	registro.open("registro.txt", ofstream::out | ofstream::app);
+	registro_1.open("registro.txt", ofstream::out | ofstream::app);
 
 	cout << "Digite seu nome:\n";
 	nome = getIt();
-	registro << nome;
+	registro_1 << nome;
 
 	cout << "Digite seu sobrenome:\n";
 	sobrenome = getIt();
-	registro << sobrenome;
+	registro_1 << sobrenome;
 
 	cout << "Digite seu endereço:\n";
 	endereco = getIt();
-	registro << endereco;
+	registro_1 << endereco;
 
 	cout << "Digite seu cep:\n";
 	cep = getIt();
-	registro << cep;
+	registro_1 << cep;
 
 	cout << "Digite seu telefone:\n";
 	telefone = getIt();
-	registro <<	telefone;
-	registro.close();
+	registro_1 <<	telefone;
+	registro_1.close();
 	cout << "Registrado\n";
 	sleep(1);
 
@@ -69,7 +62,7 @@ void mostrarAteHash(std::string str,int pos)
 	cout << endl;
 }
 
-void encontrarTodasStr(std::vector<size_t> & vec, std::string str, std::string search)
+void encontrarTodasStr_1(std::vector<size_t> & vec, std::string str, std::string search)
 {
 	// Get the first occurrence
 	size_t pos = str.find(search);
@@ -85,12 +78,12 @@ void encontrarTodasStr(std::vector<size_t> & vec, std::string str, std::string s
 	}
 }
 
-void procurar()
+void procurar_1()
 {
 	vector<size_t> vec;
-	string filename = "registro.txt";
+	string filename = "registro_1.txt";
 	string search;
-	registro.open(filename.c_str(), ofstream::out | ofstream::app);
+	registro_1.open(filename.c_str(), ofstream::out | ofstream::app);
 
 	ifstream file(filename.c_str());
     stringstream buffer;
@@ -98,12 +91,12 @@ void procurar()
     buffer << file.rdbuf();
     string str = buffer.str();
 
-    cout << "Digite o nome da pessoa que deseja procurar: \n";
+    cout << "Digite o nome da pessoa que deseja procurar_1: \n";
     cin >> search;
     cin.clear();
 	cin.ignore(256, '\n');
 
-	encontrarTodasStr(vec, str , search);
+	encontrarTodasStr_1(vec, str , search);
 
 	for (size_t pos : vec)
 	{
@@ -123,11 +116,11 @@ void procurar()
 
 	cout << "Pressione Enter pra voltar ao menu\n";
 	getchar();
-	registro.close();
+	registro_1.close();
 }
 
 
-void menu()
+void menu_1()
 {
 	int choice;
 	bool menu = true;
@@ -150,7 +143,7 @@ void menu()
 			break;
 
 			case 2:
-			procurar();		
+			procurar_1();		
 			break;
 			
 			case 3:
@@ -166,13 +159,4 @@ void menu()
 			break;
 		}
 	}
-}
-
-int main(int argc, char const *argv[])
-{
-	locale::global(std::locale("en_US.utf8"));
-	wcout.imbue(std::locale());
-
-	menu();
-	return 0;
 }
