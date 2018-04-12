@@ -48,7 +48,6 @@ void tamanhoFixo()
 	registro_1 <<	telefone;
 	registro_1.close();
 	cout << "Registrado\n";
-	sleep(1);
 
 }
 
@@ -93,8 +92,8 @@ void procurar_1()
 
     cout << "Digite o nome da pessoa que deseja procurar_1: \n";
     cin >> search;
-    cin.clear();
-	cin.ignore(256, '\n');
+    //cin.clear();
+	//cin.ignore(256, '\n');
 
 	encontrarTodasStr_1(vec, str , search);
 
@@ -125,7 +124,6 @@ void menu_1()
 	int choice;
 	bool menu = true;
 	while (menu != false){
-		system("clear");
 		cout << "*******************************\n";
 		cout << " 1 - Registrar uma pessoa\n";
 		cout << " 2 - Procurar registro\n";
@@ -133,8 +131,8 @@ void menu_1()
 		cout << " Digite uma opção: ";
 
 		cin >> choice;
-		cin.clear();
-		cin.ignore(256, '\n');
+		//cin.clear();
+		//cin.ignore(256, '\n');
 
 		switch (choice)
 		{
@@ -154,8 +152,8 @@ void menu_1()
 			cout << "Escolha não válida \n";
 			cout << "Escolha novamente\n";
 			cin >> choice;
-			cin.clear();
-			cin.ignore(256, '\n');
+			//cin.clear();
+			//cin.ignore(256, '\n');
 			break;
 		}
 	}
