@@ -5,6 +5,8 @@
 #include <string>
 #include <list>
 #include <cstdio>
+#include "OA3_1.hpp"
+#include "OA3_4.hpp"
 
 using namespace std;
 
@@ -13,15 +15,15 @@ void burn_sizeInFront(fstream &file)
 {
 	string buffer;
 	list<string> data_fields = {"Sobrenome", "Nome", "Endereco", "CEP", "Telefone"};
-	list<string> data_input = {"Sperling", "Otto", "SQNSQN", "77777777", "999999999"};
+	//list<string> data_input = {"Sperling", "Otto", "SQNSQN", "77777777", "999999999"};
 	string data_size;
-	list<string>::iterator jt = data_input.begin();	// for the sake of debugging
+	//list<string>::iterator jt = data_input.begin();	// for the sake of debugging
 
 	for(list<string>::iterator it = data_fields.begin(); it != data_fields.end(); ++it)
 	{
-		//cout << (*it) << " = ";
-		// cin >> buffer;	// in the actual program
-		buffer = (*jt);	// for the sake of debugging
+		cout << (*it) << " = ";
+		cin >> buffer;	// in the actual program
+		//buffer = (*jt);	// for the sake of debugging
 
 		if(buffer.size() < 10)						// START_ standardize size field to 2 bytes
 		{											//
@@ -37,7 +39,7 @@ void burn_sizeInFront(fstream &file)
 		file << buffer;
 		buffer.clear();
 		data_size.clear();
-		jt++;
+	//	jt++;
 	}
 
 }
@@ -46,20 +48,20 @@ void burn_separator(fstream &file)
 {
 	string buffer;
 	list<string> data_fields = {"Sobrenome", "Nome", "Endereco", "CEP", "Telefone"};
-	list<string> data_input = {"Sperling", "Otto", "SQNSQN", "77777777", "999999999"};
-	list<string>::iterator jt = data_input.begin();	// for the sake of debuggin
+//	list<string> data_input = {"Sperling", "Otto", "SQNSQN", "77777777", "999999999"};
+//	list<string>::iterator jt = data_input.begin();	// for the sake of debuggin
 
 
 	for(list<string>::iterator it = data_fields.begin(); it != data_fields.end(); ++it)
 	{
-		//cout << (*it) << " = ";
-		// cin >> buffer;	// in the actual program
-		buffer = (*jt);	// for the sake of debugging
+		cout << (*it) << " = ";
+		cin >> buffer;	// in the actual program
+		//buffer = (*jt);	// for the sake of debugging
 
 		buffer.append("|");
 		file << buffer;
 		buffer.clear();
-		jt++;
+		//jt++;
 	}
 
 }
@@ -112,25 +114,167 @@ void read_separator(fstream &file)
 	}
 }
 
-int main(int argc, char** argv)
+void menu_2(fstream &file)
 {
+	int choice;
+	bool menu = true;
+	while (menu != false){
+		cout << "******* ITEM 2 **************\n";
+		cout << " 1 - Registrar uma pessoa\n";
+		cout << " 2 - Procurar registro\n";
+		cout << " 3 - Exit.\n";
+		cout << " Digite uma opção: ";
+
+		cin >> choice;
+		//cin.clear();
+		//cin.ignore(256, '\n');
+
+		switch (choice)
+		{
+			case 1:
+			burn_sizeInFront(file);
+			file.clear();
+			file.seekg(0, ios::beg);
+			break;
+
+			case 2:
+			cout << "\n\n__________________________________\n";
+			read_sizeInFront(file);	
+			cout << "\n\n__________________________________\n";
+			file.clear();
+			file.seekg(0, ios::beg);	
+			break;
+			
+			case 3:
+			menu = false;
+			break;
+
+			default:
+			cout << "Escolha não válida \n";
+			cout << "Escolha novamente\n";
+			cin >> choice;
+			//cin.clear();
+			//cin.ignore(256, '\n');
+			break;
+		}
+	}
+}
+
+void menu_3(fstream &file)
+{
+	int choice;
+	bool menu = true;
+	while (menu != false){
+		cout << "******** ITEM 3 ***************\n";
+		cout << " 1 - Registrar uma pessoa\n";
+		cout << " 2 - Procurar registro\n";
+		cout << " 3 - Exit.\n";
+		cout << " Digite uma opção: ";
+
+		cin >> choice;
+		//cin.clear();
+		//cin.ignore(256, '\n');
+
+		switch (choice)
+		{
+			case 1:
+			burn_separator(file);
+			file.clear();
+			file.seekg(0, ios::beg);
+			break;
+
+			case 2:
+			cout << "\n\n__________________________________\n";
+			read_separator(file);
+			cout << "\n__________________________________\n\n";
+			file.clear();
+			file.seekg(0, ios::beg);
+			break;
+			
+			case 3:
+			menu = false;
+			break;
+
+			default:
+			cout << "Escolha não válida \n";
+			cout << "Escolha novamente\n";
+			cin >> choice;
+			//cin.clear();
+			//cin.ignore(256, '\n');
+			break;
+		}
+	}
+}
+
+void main_menu()
+{
+	int choice;
+	bool menu = true;
 	fstream f_one("dataFront.txt", fstream::in | fstream::out | fstream::trunc);
 	if(! f_one.is_open())
 		throw "FILE_ONE NOT OPEN";
-	burn_sizeInFront(f_one);
-	f_one.clear();
-	f_one.seekg(0, ios::beg);
-	read_sizeInFront(f_one);
-	f_one.close();
-	
 	fstream f_two("dataSep.txt", fstream::in | fstream::out | fstream::trunc);
 	if(!f_two.is_open())
 		throw "FILE_TWO NOT OPEN";
-	burn_separator(f_two);
-	f_two.clear();
-	f_two.seekg(0, ios::beg);
-	read_separator(f_two);
-	f_two.close();
+	
+	cout << "\t\tLE3OA - Otto & Gabriel" << endl;
+	cout << "\tOtto K. von Sperling\n\t\tMAT: 12/0131510" << endl;
+	cout << "\tGabriel Guimarães A. de Castro\n\t\tMAT: 15/0126425" << endl;
+	
+	while (menu != false){
+		cout << "*******************************\n";
+		cout << " Item 1 - STATIC SIZE OF DATA STREAM\n";
+		cout << " Item 2 - SIZE TOKEN OF DATA STREAM\n";
+		cout << " Item 3 - SEPARATOR FOR DATA STREAM\n";
+		cout << " Item 4 - ATTRIBUTE FIELD FOR DATA STREAM\n";
+		cout << " 5 - Exit.\n";
+		cout << " Digite uma opção: ";
 
+		cin >> choice;
+		//cin.clear();
+		//cin.ignore(256, '\n');
+
+		switch (choice)
+		{
+			case 1:
+			menu_1();
+			break;
+
+			case 2:
+			f_one.clear();
+			f_one.seekg(0, ios::beg);
+			menu_2(f_one);
+			f_one.close();
+			break;
+			
+			case 3:
+			f_two.clear();
+			f_two.seekg(0, ios::beg);
+			menu_3(f_two);
+			f_two.close();
+			break;
+
+			case 4:
+			menu_4();
+			break;
+
+			case 5:
+			menu = false;
+			break;
+
+			default:
+			cout << "Escolha não válida \n";
+			cout << "Escolha novamente\n";
+			cin >> choice;
+			//cin.clear();
+			//cin.ignore(256, '\n');
+			break;
+		}
+	}
+}
+
+int main(int argc, char** argv)
+{
+	main_menu();
 	return 0;
 }
