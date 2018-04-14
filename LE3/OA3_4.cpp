@@ -7,7 +7,8 @@ ofstream registro;
 void guarda(std::string str)
 {
 	string aux;
-	getline(std::cin, aux);
+	
+	cin >> aux;
 	str += aux;
 	str += '|';
 	registro << str;

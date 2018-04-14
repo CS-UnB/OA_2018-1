@@ -6,21 +6,6 @@ using namespace std;
 
 ofstream registro_1;
 
-string getIt()
-{
-	char buffer[TAM];
-	string s0;
-	unsigned aux;
-	unsigned sz = s0.size();
-	cin.width(TAM);
-	cin.getline(buffer, sizeof(buffer));
-	s0 = buffer;
-	aux = TAM - sz;
-	s0.resize(sz+aux, '#');
-
-	return s0;
-}
-
 void tamanhoFixo()
 {
 	string nome, sobrenome, endereco, cep, telefone;
@@ -28,94 +13,111 @@ void tamanhoFixo()
 	registro_1.open("registro.txt", ofstream::out | ofstream::app);
 
 	cout << "Digite seu nome:\n";
-	nome = getIt();
+	cin >> nome;
+	for(int i = nome.size(); i < TAM; ++i)
+		nome.append("#");
 	registro_1 << nome;
 
 	cout << "Digite seu sobrenome:\n";
-	sobrenome = getIt();
+	cin >> sobrenome;
+	for(int i = sobrenome.size(); i < TAM; ++i)
+		sobrenome.append("#");
 	registro_1 << sobrenome;
 
 	cout << "Digite seu endereço:\n";
-	endereco = getIt();
+	cin >> endereco;
+	for(int i = endereco.size(); i < TAM; ++i)
+		endereco.append("#");
 	registro_1 << endereco;
 
 	cout << "Digite seu cep:\n";
-	cep = getIt();
+	cin >> cep;
+	for(int i = cep.size(); i < TAM; ++i)
+		cep.append("#");
 	registro_1 << cep;
 
 	cout << "Digite seu telefone:\n";
-	telefone = getIt();
+	cin >> telefone;
+	for(int i = telefone.size(); i < TAM; ++i)
+		telefone.append("#");
 	registro_1 <<	telefone;
 	registro_1.close();
 	cout << "Registrado\n";
 
 }
 
-void mostrarAteHash(std::string str,int pos)
+void mostrarAteHash(std::string str)
 {
-	while (str[pos] != '#')
+	for(int i = 0; i < str.size(); ++i)
 	{
-		cout << str[pos];
-		pos+=1;
+		if(str[i] != '#')
+			cout << str[i];
 	}
 	cout << endl;
 }
 
-void encontrarTodasStr_1(std::vector<size_t> & vec, std::string str, std::string search)
+string encontrarTodasStr_1(std::string str, std::string search)
 {
 	// Get the first occurrence
 	size_t pos = str.find(search);
- 
-	// Repeat till end is reached
-	while( pos != string::npos)
-	{
-		// Add position to the vector
-		vec.push_back(pos);
- 
-		// Get the next occurrence from the current position
-		pos =str.find(search, pos + search.size());
-	}
+	
+	if(pos == string::npos)
+		return "-1";
+
+	string buffer(str, pos, (5 * TAM));
+	return buffer;
 }
 
 void procurar_1()
 {
-	vector<size_t> vec;
-	string filename = "registro_1.txt";
-	string search;
-	registro_1.open(filename.c_str(), ofstream::out | ofstream::app);
+	string search, str, found, buf;
+	string filename = "registro.txt";
 
 	ifstream file(filename.c_str());
     stringstream buffer;
 
     buffer << file.rdbuf();
-    string str = buffer.str();
+    str = buffer.str();
 
     cout << "Digite o nome da pessoa que deseja procurar_1: \n";
     cin >> search;
-    //cin.clear();
-	//cin.ignore(256, '\n');
 
-	encontrarTodasStr_1(vec, str , search);
-
-	for (size_t pos : vec)
+	found = encontrarTodasStr_1(str , search);
+	if(found == "-1")
 	{
-		cout << "--------------------------------------------\n";
-		cout << "Nome: ";
-		mostrarAteHash(str,pos);
-		cout << "Sobrenome: ";
-		mostrarAteHash(str, pos+TAM);
-		cout << "Endereco: ";
-		mostrarAteHash(str, pos+2*TAM);
-		cout << "CEP: ";
-		mostrarAteHash(str, pos+3*TAM);
-		cout << "Telefone: ";
-		mostrarAteHash(str, pos+4*TAM);
-		cout << "--------------------------------------------\n";
+		cout << "Pessoa nao localizada." << endl;
+		file.close();
 	}
+	else
+	{
+		{
+			cout << "--------------------------------------------\n";
+			cout << "Nome: ";
+			buf = found.substr(0, TAM);
+			mostrarAteHash(buf);
+
+			cout << "Sobrenome: ";
+			buf = found.substr(TAM, TAM);
+			mostrarAteHash(buf);
+
+			cout << "Endereco: ";
+			buf = found.substr((2 * TAM), TAM);
+			mostrarAteHash(buf);
+
+			cout << "CEP: ";
+			buf = found.substr((3 * TAM), TAM);
+			mostrarAteHash(buf);
+
+			cout << "Telefone: ";
+			buf = found.substr((4 * TAM), TAM);
+			mostrarAteHash(buf);
+			cout << "--------------------------------------------\n";
+		}
+	}
+
 
 	cout << "Pressione Enter pra voltar ao menu\n";
 	getchar();
-	registro_1.close();
 }
 
 
