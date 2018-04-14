@@ -15,15 +15,15 @@ void burn_sizeInFront(fstream &file)
 {
 	string buffer;
 	list<string> data_fields = {"Sobrenome", "Nome", "Endereco", "CEP", "Telefone"};
-	list<string> data_input = {"Sperling", "Otto", "SQNSQN", "77777777", "999999999"};
+	//list<string> data_input = {"Sperling", "Otto", "SQNSQN", "77777777", "999999999"};
 	string data_size;
-	list<string>::iterator jt = data_input.begin();	// for the sake of debugging
+	//list<string>::iterator jt = data_input.begin();	// for the sake of debugging
 
 	for(list<string>::iterator it = data_fields.begin(); it != data_fields.end(); ++it)
 	{
-		//cout << (*it) << " = ";
-		// cin >> buffer;	// in the actual program
-		buffer = (*jt);	// for the sake of debugging
+		cout << (*it) << " = ";
+		cin >> buffer;	// in the actual program
+		//buffer = (*jt);	// for the sake of debugging
 
 		if(buffer.size() < 10)						// START_ standardize size field to 2 bytes
 		{											//
@@ -39,7 +39,7 @@ void burn_sizeInFront(fstream &file)
 		file << buffer;
 		buffer.clear();
 		data_size.clear();
-		jt++;
+	//	jt++;
 	}
 
 }
@@ -48,20 +48,20 @@ void burn_separator(fstream &file)
 {
 	string buffer;
 	list<string> data_fields = {"Sobrenome", "Nome", "Endereco", "CEP", "Telefone"};
-	list<string> data_input = {"Sperling", "Otto", "SQNSQN", "77777777", "999999999"};
-	list<string>::iterator jt = data_input.begin();	// for the sake of debuggin
+//	list<string> data_input = {"Sperling", "Otto", "SQNSQN", "77777777", "999999999"};
+//	list<string>::iterator jt = data_input.begin();	// for the sake of debuggin
 
 
 	for(list<string>::iterator it = data_fields.begin(); it != data_fields.end(); ++it)
 	{
-		//cout << (*it) << " = ";
-		// cin >> buffer;	// in the actual program
-		buffer = (*jt);	// for the sake of debugging
+		cout << (*it) << " = ";
+		cin >> buffer;	// in the actual program
+		//buffer = (*jt);	// for the sake of debugging
 
 		buffer.append("|");
 		file << buffer;
 		buffer.clear();
-		jt++;
+		//jt++;
 	}
 
 }
@@ -119,7 +119,6 @@ void menu_2(fstream &file)
 	int choice;
 	bool menu = true;
 	while (menu != false){
-		system("clear");
 		cout << "******* ITEM 2 **************\n";
 		cout << " 1 - Registrar uma pessoa\n";
 		cout << " 2 - Procurar registro\n";
@@ -127,17 +126,23 @@ void menu_2(fstream &file)
 		cout << " Digite uma opção: ";
 
 		cin >> choice;
-		cin.clear();
-		cin.ignore(256, '\n');
+		//cin.clear();
+		//cin.ignore(256, '\n');
 
 		switch (choice)
 		{
 			case 1:
 			burn_sizeInFront(file);
+			file.clear();
+			file.seekg(0, ios::beg);
 			break;
 
 			case 2:
-			read_sizeInFront(file);		
+			cout << "\n\n__________________________________\n";
+			read_sizeInFront(file);	
+			cout << "\n\n__________________________________\n";
+			file.clear();
+			file.seekg(0, ios::beg);	
 			break;
 			
 			case 3:
@@ -148,8 +153,8 @@ void menu_2(fstream &file)
 			cout << "Escolha não válida \n";
 			cout << "Escolha novamente\n";
 			cin >> choice;
-			cin.clear();
-			cin.ignore(256, '\n');
+			//cin.clear();
+			//cin.ignore(256, '\n');
 			break;
 		}
 	}
@@ -160,7 +165,6 @@ void menu_3(fstream &file)
 	int choice;
 	bool menu = true;
 	while (menu != false){
-		system("clear");
 		cout << "******** ITEM 3 ***************\n";
 		cout << " 1 - Registrar uma pessoa\n";
 		cout << " 2 - Procurar registro\n";
@@ -168,17 +172,23 @@ void menu_3(fstream &file)
 		cout << " Digite uma opção: ";
 
 		cin >> choice;
-		cin.clear();
-		cin.ignore(256, '\n');
+		//cin.clear();
+		//cin.ignore(256, '\n');
 
 		switch (choice)
 		{
 			case 1:
 			burn_separator(file);
+			file.clear();
+			file.seekg(0, ios::beg);
 			break;
 
 			case 2:
-			read_separator(file);		
+			cout << "\n\n__________________________________\n";
+			read_separator(file);
+			cout << "\n__________________________________\n\n";
+			file.clear();
+			file.seekg(0, ios::beg);
 			break;
 			
 			case 3:
@@ -189,8 +199,8 @@ void menu_3(fstream &file)
 			cout << "Escolha não válida \n";
 			cout << "Escolha novamente\n";
 			cin >> choice;
-			cin.clear();
-			cin.ignore(256, '\n');
+			//cin.clear();
+			//cin.ignore(256, '\n');
 			break;
 		}
 	}
@@ -208,8 +218,8 @@ void main_menu()
 		throw "FILE_TWO NOT OPEN";
 	
 	cout << "\t\tLE3OA - Otto & Gabriel" << endl;
-	cout << "\tOtto K. von Sperling\n\tMAT: 12/0131510" << endl;
-	cout << "\tGabriel\n\tMAT: XXXXXXXX" << endl;
+	cout << "\tOtto K. von Sperling\n\t\tMAT: 12/0131510" << endl;
+	cout << "\tGabriel Guimarães A. de Castro\n\t\tMAT: 15/0126425" << endl;
 	
 	while (menu != false){
 		cout << "*******************************\n";
@@ -221,14 +231,13 @@ void main_menu()
 		cout << " Digite uma opção: ";
 
 		cin >> choice;
-		cin.clear();
-		cin.ignore(256, '\n');
+		//cin.clear();
+		//cin.ignore(256, '\n');
 
 		switch (choice)
 		{
 			case 1:
 			menu_1();
-			system("clear");
 			break;
 
 			case 2:
@@ -257,9 +266,8 @@ void main_menu()
 			cout << "Escolha não válida \n";
 			cout << "Escolha novamente\n";
 			cin >> choice;
-			cin.clear();
-			cin.ignore(256, '\n');
-			system("clear");
+			//cin.clear();
+			//cin.ignore(256, '\n');
 			break;
 		}
 	}

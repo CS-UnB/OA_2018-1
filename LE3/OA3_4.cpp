@@ -94,8 +94,8 @@ void procurar()
 
     cout << "Digite o nome da pessoa que deseja procurar: \n";
     cin >> search;
-    cin.clear();
-	cin.ignore(256, '\n');
+    //cin.clear();
+	//cin.ignore(256, '\n');
 
 	encontrarTodasStr(vec, str , search);
 
@@ -126,7 +126,6 @@ void menu_4()
 	int choice;
 	bool menu = true;
 	while (menu != false){
-		system("clear");
 		cout << "*******************************\n";
 		cout << " 1 - Registrar uma pessoa\n";
 		cout << " 2 - Procurar registro\n";
@@ -134,8 +133,8 @@ void menu_4()
 		cout << " Digite uma opção: ";
 
 		cin >> choice;
-		cin.clear();
-		cin.ignore(256, '\n');
+		//cin.clear();
+		//cin.ignore(256, '\n');
 
 		switch (choice)
 		{
@@ -155,8 +154,8 @@ void menu_4()
 			cout << "Escolha não válida \n";
 			cout << "Escolha novamente\n";
 			cin >> choice;
-			cin.clear();
-			cin.ignore(256, '\n');
+			//cin.clear();
+			//cin.ignore(256, '\n');
 			break;
 		}
 	}
