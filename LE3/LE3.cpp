@@ -13,16 +13,17 @@ using namespace std;
 
 void burn_sizeInFront(fstream &file)
 {
-	string buffer;
+	string buffer, trash;
 	list<string> data_fields = {"Sobrenome", "Nome", "Endereco", "CEP", "Telefone"};
 	//list<string> data_input = {"Sperling", "Otto", "SQNSQN", "77777777", "999999999"};
 	string data_size;
 	//list<string>::iterator jt = data_input.begin();	// for the sake of debugging
+	getline(cin, trash);
 
 	for(list<string>::iterator it = data_fields.begin(); it != data_fields.end(); ++it)
 	{
 		cout << (*it) << " = ";
-		cin >> buffer;	// in the actual program
+		getline(cin, buffer);	// in the actual program
 		//buffer = (*jt);	// for the sake of debugging
 
 		if(buffer.size() < 10)						// START_ standardize size field to 2 bytes
@@ -46,16 +47,17 @@ void burn_sizeInFront(fstream &file)
 
 void burn_separator(fstream &file)
 {
-	string buffer;
+	string buffer, trash;
 	list<string> data_fields = {"Sobrenome", "Nome", "Endereco", "CEP", "Telefone"};
 //	list<string> data_input = {"Sperling", "Otto", "SQNSQN", "77777777", "999999999"};
 //	list<string>::iterator jt = data_input.begin();	// for the sake of debuggin
 
+	getline(cin, trash);
 
 	for(list<string>::iterator it = data_fields.begin(); it != data_fields.end(); ++it)
 	{
 		cout << (*it) << " = ";
-		cin >> buffer;	// in the actual program
+		getline(cin, buffer);	// in the actual program
 		//buffer = (*jt);	// for the sake of debugging
 
 		buffer.append("|");
