@@ -12,32 +12,37 @@ void tamanhoFixo()
 
 	registro_1.open("registro.txt", ofstream::out | ofstream::app);
 
-	cout << "Digite seu nome:\n";
-	cin >> nome;
+	cout << "Digite seu nome:"  << endl;
+	getline(std::cin,nome);
+	getline(std::cin,nome);
 	for(int i = nome.size(); i < TAM; ++i)
 		nome.append("#");
 	registro_1 << nome;
 
-	cout << "Digite seu sobrenome:\n";
-	cin >> sobrenome;
+	cout << "Digite seu sobrenome:" << endl;
+	cin.clear();
+	getline(std::cin,sobrenome);
 	for(int i = sobrenome.size(); i < TAM; ++i)
 		sobrenome.append("#");
 	registro_1 << sobrenome;
 
-	cout << "Digite seu endereço:\n";
-	cin >> endereco;
+	cout << "Digite seu endereço:"  << endl;
+	cin.clear();
+	getline(std::cin,endereco);
 	for(int i = endereco.size(); i < TAM; ++i)
 		endereco.append("#");
 	registro_1 << endereco;
 
-	cout << "Digite seu cep:\n";
-	cin >> cep;
+	cout << "Digite seu cep:" << endl;
+	cin.clear();
+	getline(std::cin,cep);
 	for(int i = cep.size(); i < TAM; ++i)
 		cep.append("#");
 	registro_1 << cep;
 
-	cout << "Digite seu telefone:\n";
-	cin >> telefone;
+	cout << "Digite seu telefone:" << endl;
+	cin.clear();
+	getline(std::cin,telefone);
 	for(int i = telefone.size(); i < TAM; ++i)
 		telefone.append("#");
 	registro_1 <<	telefone;
@@ -79,8 +84,10 @@ void procurar_1()
     buffer << file.rdbuf();
     str = buffer.str();
 
-    cout << "Digite o nome da pessoa que deseja procurar_1: \n";
-    cin >> search;
+    cout << "Digite o nome da pessoa que deseja procurar_1:" << endl;
+    cin.clear();
+    getline(std::cin, search);
+    getline(std::cin, search);
 
 	found = encontrarTodasStr_1(str , search);
 	if(found == "-1")
