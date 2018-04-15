@@ -11,8 +11,8 @@
 
 std::string getIt();
 void tamanhoFixo();
-void mostrarAteHash(std::string str,int pos);
-void encontrarTodasStr_1(std::vector<size_t> & vec, std::string str, std::string search);
+void mostrarAteHash(std::string str);
+std::string encontrarTodasStr_1(std::string str, std::string search);
 void procurar_1();
 void menu_1();
 
