@@ -10,7 +10,7 @@ void tamanhoFixo()
 {
 	string nome, sobrenome, endereco, cep, telefone;
 
-	registro_1.open("registro.txt", ofstream::out | ofstream::app);
+	registro_1.open("registro1.txt", ofstream::out | ofstream::app);
 
 	cout << "Digite seu nome:"  << endl;
 	getline(std::cin,nome);
@@ -76,7 +76,7 @@ string encontrarTodasStr_1(std::string str, std::string search)
 void procurar_1()
 {
 	string search, str, found, buf;
-	string filename = "registro.txt";
+	string filename = "registro1.txt";
 
 	ifstream file(filename.c_str());
     stringstream buffer;

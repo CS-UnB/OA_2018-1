@@ -7,8 +7,7 @@ ofstream registro;
 void guarda(std::string str)
 {
 	string aux;
-	
-	cin >> aux;
+	getline(std::cin, aux);
 	str += aux;
 	str += '|';
 	registro << str;
@@ -16,7 +15,7 @@ void guarda(std::string str)
 
 void atributo()
 {
-	registro.open("registro.txt", ofstream::out | ofstream::app);
+	registro.open("registro4.txt", ofstream::out | ofstream::app);
 	string str;
 
 	cout << "Digite seu nome:\n";
@@ -66,16 +65,12 @@ int	mostrarAtributo(std::string str,int pos)
 
 void encontrarTodasStr(std::vector<size_t> & vec, std::string str, std::string search)
 {
-	// Get the first occurrence
 	size_t pos = str.find(search);
- 
-	// Repeat till end is reached
+
 	while( pos != string::npos)
 	{
-		// Add position to the vector
 		vec.push_back(pos);
  
-		// Get the next occurrence from the current position
 		pos =str.find(search, pos + search.size());
 	}
 }
@@ -83,7 +78,7 @@ void encontrarTodasStr(std::vector<size_t> & vec, std::string str, std::string s
 void procurar()
 {
 	vector<size_t> vec;
-	string filename = "registro.txt";
+	string filename = "registro4.txt";
 	string search;
 	registro.open(filename.c_str(), ofstream::out | ofstream::app);
 
@@ -107,7 +102,7 @@ void procurar()
 		pos = mostrarAtributo(str,pos);
 		cout << "Sobrenome: ";
 		pos = mostrarAtributo(str, pos);
-		cout << "Endereco: ";
+		cout << "Endereço: ";
 		pos = mostrarAtributo(str, pos);
 		cout << "CEP: ";
 		pos = mostrarAtributo(str, pos);
@@ -134,8 +129,8 @@ void menu_4()
 		cout << " Digite uma opção: ";
 
 		cin >> choice;
-		//cin.clear();
-		//cin.ignore(256, '\n');
+		cin.clear();
+		cin.ignore(256, '\n');
 
 		switch (choice)
 		{
@@ -155,8 +150,8 @@ void menu_4()
 			cout << "Escolha não válida \n";
 			cout << "Escolha novamente\n";
 			cin >> choice;
-			//cin.clear();
-			//cin.ignore(256, '\n');
+			cin.clear();
+			cin.ignore(256, '\n');
 			break;
 		}
 	}
