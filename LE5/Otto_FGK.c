@@ -438,7 +438,8 @@ int main(int argc, char *argv[]) {
 		printf("\t./fgk input_file output_file -d (to decode)\n");
 		exit(1);
 	}
-	
+	printf("ALUNO:\tOtto K. von Sperling\n");
+    printf("MATRICULA:\t12/0131510\n");
     FILE *fp_in;
     FILE *fp_out;
     int option;

@@ -37,6 +37,8 @@ void quicksort(int a[], int low, int high)
 
 int main(void)
 {
+    printf("ALUNO:\tOtto K. von Sperling\n");
+    printf("MATRICULA:\t12/0131510\n");
     int a[N], i;
 
     printf("Enter %d numbers to be sorted: ", N);
