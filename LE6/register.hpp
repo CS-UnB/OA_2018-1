@@ -15,7 +15,7 @@ using namespace std;
 class REGISTER {
 	public:	
 		string first_name;
-		string second_name;
+		string last_name;
 		string birth_date;
 		string birth_place;
 	       	string marital_status;

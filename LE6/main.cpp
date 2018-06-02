@@ -1,15 +1,15 @@
 #include "register.hpp"
 #include <fstream>
+#include <utility>
 //
 using namespace std;
 #define NUM_REG 20
-<<<<<<< HEAD
 //
 void generate(vector<string> &data)	{
 	data.reserve (NUM_REG);
 //	
 	for (int it = 65; it < NUM_REG+65; it++)	{
-		string buf (5, char(i));
+		string buf (5, char(it));
 		data.push_back (buf);
 	}
 }
@@ -18,7 +18,6 @@ void generate(vector<string> &data)	{
 void populate(vector<REGISTER> &source)	{
 	time_t curr_time;
 	REGISTER registers;
-<<<<<<< HEAD
 	vector<string> mock_data;
 	generate (mock_data);
 //
@@ -81,7 +80,7 @@ void save_to_file(vector<REGISTER> &registers)	{
 			reg_file << registers[i].entry_time << endl;
 //			
 			tag.first 	= registers[i].CPF;
-			tag.secind	= registers[i].last_name;
+			tag.second	= registers[i].last_name;
 			tag_file 	<< tag.first << " | ";
 			tag_file	<< tag.second << endl;
 		}
@@ -93,10 +92,51 @@ void save_to_file(vector<REGISTER> &registers)	{
 }
 //
 //
+int find_register(string args)	{
+	ifstream t_file ("tag.txt", ifstream::in);
+//	
+	if (t_file.is_open())	{
+		string buf;
+		int count = 0;
+		size_t pos;
+		while (t_file.good())	{
+			getline (t_file, buf);
+			pos = buf.find (args);
+			if (pos != string::npos)
+				return count;
+			else
+				count++;
+		}
+		t_file.close();
+		return -1;	// if register is not found
+	} else	{
+		cout << "Could not open tag file" << endl;
+		return -1;
+	}
+}
+//
+//
 int main (int argc, char** argv)	{
 	vector<REGISTER> registers;
+	string search;
+	int id;
 	//
 	populate (registers);
 	save_to_file (registers);
+	//
+	cout << "Register to be found - CPF or last name: ";
+	cin >> search;
+	id = find_register(search);
+	if (id == -1)
+		cout << "Register not found." << endl;
+	else	{
+		cout << "\tNAME:\t\t" << registers[id].first_name << " " << registers[id].last_name << endl;
+		cout << "\tRACE:\t\t" << registers[id].ethnicity << endl;
+		cout << "\tCPF:\t\t" << registers[id].CPF << endl;
+		cout << "\tBIRTH:\t\t" << registers[id].birth_date << " in " << registers[id].birth_place << endl;
+		cout << "\tMARITAL:\t" << registers[id].marital_status << " with " << registers[id].children << " children" << endl;
+		cout << "\tEDU:\t\t" << registers[id].education << endl;
+	}
+	//
 	return 0;
 }
