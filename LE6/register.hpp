@@ -1,7 +1,7 @@
 // LE6_OA
 // ALUNOS:
 //	Otto K. von Sperling	12/0131510
-//	Gustavo Sousa		xx/xxxxxxx
+//	Gustavo C. Sousa	14/0142568	
 //
 #ifndef REGISTER_HPP
 #define REGISTER_HPP

@@ -124,6 +124,7 @@ int main (int argc, char** argv)	{
 	populate (registers);
 	save_to_file (registers);
 	//
+	cout << "\t\tOtto K. von Sperling - 12/0131510\n\t\tGustavo C. Sousa - 14/0142568" << endl;
 	cout << "Register to be found - CPF or last name: ";
 	cin >> search;
 	id = find_register(search);
