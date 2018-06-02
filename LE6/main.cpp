@@ -3,6 +3,7 @@
 //
 using namespace std;
 #define NUM_REG 20
+<<<<<<< HEAD
 //
 void generate(vector<string> &data)	{
 	data.reserve (NUM_REG);
@@ -17,7 +18,7 @@ void generate(vector<string> &data)	{
 void populate(vector<REGISTER> &source)	{
 	time_t curr_time;
 	REGISTER registers;
-#ifdef TEST
+<<<<<<< HEAD
 	vector<string> mock_data;
 	generate (mock_data);
 //
@@ -58,7 +59,6 @@ void populate(vector<REGISTER> &source)	{
 		//
 		source.push_back (registers);
 	}
-#endif
 }
 //
 //

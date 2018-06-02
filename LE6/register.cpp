@@ -24,7 +24,6 @@ void REGISTER::set(string field, string args)	{
 		this->$$ = args;
 	else if (field == "entry_time")
 		this->entry_time = args;
-
 	else
 		cout << "Field could not be set!" << endl;
 }
